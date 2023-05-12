@@ -5,13 +5,12 @@ import datetime
 
 def tomorrow():
     res = ''
-    tod = datetime.date.today() + datetime.timedelta(days=1)
-
+    tod = datetime.date.today() + datetime.timedelta(days=0)
     for i in curriculum_html_week:
         if str(tod) in i['дата']:
-            res += days[int(datetime.datetime.today().weekday()) + 2]
+            res += days[int(datetime.datetime.today().weekday()) + 1]
             res += '\n'
-        break
+            break
 
     if res == '':
         return 'Выходной, зачилься)'

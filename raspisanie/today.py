@@ -4,12 +4,11 @@ import datetime
 
 def today():
     res = ''
-
     for i in curriculum_html_week:
         if date in i['дата']:
-            res += days[int(datetime.datetime.today().weekday()) + 1]
+            res += days[int(datetime.datetime.today().weekday()) + 0]
             res += '\n'
-        break
+            break
 
     if res == '':
         return 'Выходной, зачилься)'
