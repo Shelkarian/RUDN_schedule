@@ -5,10 +5,13 @@ import datetime
 
 def tomorrow():
     res = ''
-    tod = datetime.date.today() + datetime.timedelta(days=0)
+    tod = datetime.date.today() + datetime.timedelta(days=1)
     for i in curriculum_html_week:
         if str(tod) in i['дата']:
-            res += days[int(datetime.datetime.today().weekday()) + 1]
+            t = int(datetime.datetime.today().weekday()) + 1
+            if t == 8:
+                t = 1
+            res += days[t]
             res += '\n'
             break
 
