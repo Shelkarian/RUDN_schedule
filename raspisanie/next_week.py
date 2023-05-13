@@ -1,8 +1,24 @@
-from raspisanie.parser import curriculum_html_week
 from raspisanie.result import result, days
+import requests
+import json
 
 
-def week():
+dates_url = 'http://mmis-web.rudn-sochi.ru/api/GetRaspDates?idGroup=1467'
+url = "http://mmis-web.rudn-sochi.ru/api/Rasp?idGroup=1467&sdate="
+
+dates_html = requests.get(dates_url)
+dates = json.loads(dates_html.text)
+date = dates['data']['selDate']  # получаем сегодняшнюю дату
+n_date = int(date[-2:]) + 7
+date = date[:-2] + str(n_date)
+url += date
+
+data_html = requests.get(url)
+curriculum = json.loads(data_html.text)
+
+curriculum_html_week = curriculum['data']['rasp']  # убираем лишнее из расписания
+
+def next_week():
     res = ''
 
     for i in curriculum_html_week:
@@ -34,4 +50,4 @@ def week():
     return res
 
 
-week()
+next_week()
